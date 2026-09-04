@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sitesnap"
+version = "1.0.0"
+description = "Paste a URL, get full-site screenshots (desktop/tablet/mobile), HTML, headers and a PDF report."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "playwright>=1.45,<2",
+  "Pillow>=10",
+  "ImageHash>=4.3",
+  "beautifulsoup4>=4.12",
+  "lxml>=5",
+  "reportlab>=4",
+  "Markdown>=3.5",
+  "pypdfium2>=4",
+]
+
+[project.scripts]
+sitesnap = "sitesnap.__main__:main"
+
+[tool.setuptools]
+packages = ["sitesnap"]
+
+[tool.setuptools.package-data]
+sitesnap = ["default.config.json"]

@@ -1,0 +1,74 @@
+{
+  "project": "site snapshot",
+  "client": "site",
+  "base_url": "https://example.com/",
+  "allowed_hosts": ["example.com", "www.example.com"],
+  "output_dir": "snapshots/example.com",
+  "seeds": ["https://example.com/", "https://example.com/sitemap.xml", "https://example.com/robots.txt"],
+  "client_url_list": [],
+  "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+  "viewports": {
+    "desktop": {"width": 1440, "height": 900, "device_scale_factor": 1},
+    "tablet": {"width": 768, "height": 1024, "device_scale_factor": 1},
+    "mobile": {"width": 390, "height": 844, "device_scale_factor": 1}
+  },
+  "crawl": {
+    "concurrency": 1,
+    "delay_seconds": 1.5,
+    "max_requests": 2500,
+    "max_retries": 2,
+    "retry_backoff_seconds": 15,
+    "stop_on_429": true,
+    "stop_after_consecutive_5xx": 3,
+    "page_timeout_ms": 60000,
+    "settle_wait_ms": 2000,
+    "scroll_step_px": 600,
+    "scroll_pause_ms": 250,
+    "max_pages_per_run": 200
+  },
+  "exclude_path_patterns": [
+    "^/wp-admin", "^/wp-login\\.php", "^/xmlrpc\\.php", "^/wp-json", "^/wp-cron",
+    "^/admin", "^/administrator", "^/user/login", "^/users/sign_in",
+    "^/my-account", "^/account", "^/cart", "^/checkout", "^/basket",
+    "^/lost-password", "^/password", "^/register", "^/signup", "^/sign-up", "^/login", "^/logout", "^/sign-in", "^/signin",
+    "/feed/?$", "^/feed", "^/comments/feed", "^/rss", "\\.rss$", "\\.atom$",
+    "^/api/", "^/graphql",
+    "\\?add-to-cart=", "\\?add_to_wishlist=", "[?&]action=", "[?&]replytocom=",
+    "^/\\?s=", "^/search", "[?&]q=", "[?&]s="
+  ],
+  "max_filter_params": 1,
+  "excluded_filter_reason": "Combinatorial faceted-filter URL (2+ filter parameters or values); single-facet views are captured instead",
+  "excluded_reason": "Out of scope (authenticated, state-changing, search, feed, API or administrative endpoint)",
+  "document_extensions": [".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".zip"],
+  "tracking_params": ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "fbclid", "gclid", "mc_cid", "mc_eid", "_ga", "ref"],
+  "cookie_banner": {
+    "capture_initial_state": true,
+    "dismiss_selectors": [
+      "#cookie-law-info-bar #cookie_action_close_header", ".cky-btn-accept", "#cn-accept-cookie", ".cmplz-accept",
+      "button#onetrust-accept-btn-handler", "#CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll",
+      ".cc-btn.cc-dismiss", ".cc-allow", "button[id*='accept' i]", "button[class*='accept' i]"
+    ]
+  },
+  "interactive_states": [
+    {
+      "name": "mobile_menu_open", "viewport": "mobile", "pages": "all",
+      "click_any": [".hamburger", ".menu-toggle", ".navbar-toggler", ".navbar-toggle", ".elementor-menu-toggle",
+                    ".elementskit-menu-hamburger", ".ts-mobile-icon-toggle", "button[aria-label*='menu' i]",
+                    "button[aria-controls*='menu' i]", "[class*='menu-toggle' i]", "[class*='burger' i]"]
+    },
+    {
+      "name": "tablet_menu_open", "viewport": "tablet", "pages": ["P0001"],
+      "click_any": [".hamburger", ".menu-toggle", ".navbar-toggler", ".elementor-menu-toggle", "button[aria-label*='menu' i]"]
+    },
+    {
+      "name": "desktop_nav_hover", "viewport": "desktop", "pages": ["P0001"],
+      "hover_any": ["nav .menu-item-has-children > a", "nav li:has(> ul) > a", "header nav li:has(> ul) > a", ".dropdown > a", ".dropdown-toggle"]
+    },
+    {
+      "name": "search_open", "viewport": "desktop", "pages": ["P0001"],
+      "click_any": [".elementor-search-form__toggle", "a.search-toggle", "button.search-toggle", "[aria-label*='search' i]"]
+    }
+  ],
+  "capture_assets": false,
+  "asset_max_bytes": 25000000
+}
